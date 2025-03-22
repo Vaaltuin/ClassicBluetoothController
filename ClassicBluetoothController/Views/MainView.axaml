@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ClassicBluetoothController.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ClassicBluetoothController.Views.MainView"
+             x:DataType="vm:MainViewModel">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+    <Grid RowDefinitions="Auto, Auto, 10*, Auto, Auto">
+        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Margin="0, 20, 0, 0"
+                   Text="Testing Bluetooth on Android">
+        </TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock>Bluetooth Connection:</TextBlock>
+            <TextBlock Text="{Binding ConnectionStatus}" Background="{Binding ConnectColor}"></TextBlock>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding BluetoothMessages}"></ItemsControl>
+        </ScrollViewer>
+        <Button Grid.Row="3" Command="{Binding ClearListCommand}">Clear list</Button>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10">
+            <TextBlock VerticalAlignment="Center">Seed for reply messages:</TextBlock>
+            <TextBox Text="{Binding SendMessage}"></TextBox>
+            <Button Command="{Binding SendButtonCommand}">Send</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicBluetoothController", "ClassicBluetoothController\ClassicBluetoothController.csproj", "{57C3D73D-8808-BBC1-A78A-3F33ACDE1730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicBluetoothController.Android", "ClassicBluetoothController.Android\ClassicBluetoothController.Android.csproj", "{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C3D73D-8808-BBC1-A78A-3F33ACDE1730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C3D73D-8808-BBC1-A78A-3F33ACDE1730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C3D73D-8808-BBC1-A78A-3F33ACDE1730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C3D73D-8808-BBC1-A78A-3F33ACDE1730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BDA8E1F-211A-3B73-2AA1-42EB70611A0A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84A9CC53-0F09-494D-88E1-C6F514809BA6}
+	EndGlobalSection
+EndGlobal
