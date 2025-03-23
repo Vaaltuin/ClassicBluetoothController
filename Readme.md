@@ -3,6 +3,7 @@
 ### Versions:
 
 0.0.0 - First commit - 2025/03/23
+0.01    Minor updates
 
 The Avalonia Android project provides the basic functionality to use Classic Bluetooth.
 
