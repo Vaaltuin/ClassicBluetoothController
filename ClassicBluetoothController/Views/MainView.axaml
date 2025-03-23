@@ -17,7 +17,7 @@
         </TextBlock>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBlock>Bluetooth Connection:</TextBlock>
-            <TextBlock Text="{Binding ConnectionStatus}" Background="{Binding ConnectColor}"></TextBlock>
+            <TextBlock Text="{Binding ConnectionStatus}"></TextBlock>
         </StackPanel>
         <ScrollViewer Grid.Row="2">
             <ItemsControl ItemsSource="{Binding BluetoothMessages}"></ItemsControl>

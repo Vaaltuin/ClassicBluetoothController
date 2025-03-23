@@ -14,7 +14,6 @@ public partial class MainViewModel : ViewModelBase
     public ObservableCollection<string> BluetoothMessages { get; } = [];
     public string SendMessage { get; }
 
-    [ObservableProperty] private Color _connectColor;
     [ObservableProperty] private string _connectionStatus;
 
     public MainViewModel()
@@ -23,7 +22,6 @@ public partial class MainViewModel : ViewModelBase
         SendMessage = "Hallo";
         ConnectionStatus = "Connecting";
         var connected = false;
-        ConnectColor = Colors.Blue;
 
         // start a task to connect and receive messages
         Task.Run(async () =>
@@ -35,7 +33,6 @@ public partial class MainViewModel : ViewModelBase
                     if (!connected)
                     {
                         ConnectionStatus = "Lost connection";
-                        ConnectColor = Colors.Red;
                     }
 
                     while (!connected)
@@ -45,7 +42,6 @@ public partial class MainViewModel : ViewModelBase
                     }
 
                     ConnectionStatus = "Connected";
-                    ConnectColor = Colors.Green;
 
                     // wait for a length byte
                     try
