@@ -15,61 +15,13 @@ public partial class MainViewModel : ViewModelBase
     public string SendMessage { get; }
 
     [ObservableProperty] private string _connectionStatus;
+    bool connected = false;
 
     public MainViewModel()
     {
         BluetoothMessages.Add("List of messages received via Bluetooth");
         SendMessage = "Hallo";
-        ConnectionStatus = "Connecting";
-        var connected = false;
-
-        // start a task to connect and receive messages
-        Task.Run(async () =>
-        {
-            try
-            {
-                while (true)
-                {
-                    if (!connected)
-                    {
-                        ConnectionStatus = "Lost connection";
-                    }
-
-                    while (!connected)
-                    {
-                        if (App.RegisteredServices.BluetoothService is not null)
-                            connected = await App.RegisteredServices.BluetoothService.Connect("Kar1");
-                    }
-
-                    ConnectionStatus = "Connected";
-
-                    // wait for a length byte
-                    try
-                    {
-                        byte length = 0;
-                        while (length <= 0x80)
-                        {
-                            var data = await App.RegisteredServices.BluetoothService.Receive(1);
-                            length = data[0];
-                        }
-
-                        // read the message
-                        length = (byte)(length & 0x7f);
-                        var msg = await App.RegisteredServices.BluetoothService.Receive(length);
-                        BluetoothMessages.Add(System.Text.Encoding.Default.GetString(msg));
-                    }
-                    catch (System.Exception ex)
-                    {
-                        ConnectionStatus = ex.Message;
-                        connected = false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ConnectionStatus = ex.Message;
-            }
-        });
+        ConnectionStatus = "Click the Connect button";
     }
 
     /// <summary>
@@ -95,5 +47,74 @@ public partial class MainViewModel : ViewModelBase
         var source = Encoding.UTF8.GetBytes(SendMessage);
         Buffer.BlockCopy(source, 0, msg, 1, SendMessage.Length);
         await App.RegisteredServices.BluetoothService.Send(msg);
+    }
+
+
+    [RelayCommand]
+    private void Receive()
+    {
+        //var connected = true;
+        Task.Run(ConnectAndReceiveMessages);
+        return;
+
+        async Task? ConnectAndReceiveMessages()
+        {
+            try
+            {
+                while (true)
+                {
+                    if (!connected)
+                    {
+                        ConnectionStatus = "Lost connection";
+                    }
+
+                    while (!connected)
+                    {
+                        if (App.RegisteredServices.BluetoothService is not null)
+                            connected = await App.RegisteredServices.BluetoothService.Connect("Kar1");
+                    }
+
+                    ConnectionStatus = "Connected";
+
+                    // wait for a length byte
+                    try
+                    {
+                        byte length = 0;
+                        while (length <= 0x80)
+                        {
+                            if (App.RegisteredServices.BluetoothService == null) continue;
+
+                            var data = await App.RegisteredServices.BluetoothService.Receive(1);
+                            length = data[0];
+                        }
+
+                        // read the message
+                        length = (byte)(length & 0x7f);
+                        if (App.RegisteredServices.BluetoothService != null)
+                        {
+                            var msg = await App.RegisteredServices.BluetoothService.Receive(length);
+                            BluetoothMessages.Add(
+                                System.Text.Encoding.Default.GetString(msg));
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        ConnectionStatus = ex.Message;
+                        connected = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ConnectionStatus = ex.Message;
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task Connect()
+    {
+        connected = await App.RegisteredServices.BluetoothService?.Connect("Kar1");
+        ConnectionStatus = connected ? "Connected" : "Not Connected";
     }
 }

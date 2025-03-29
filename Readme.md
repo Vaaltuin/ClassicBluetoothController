@@ -2,8 +2,9 @@
 ## Author: W Breytenbach
 ### Versions:
 
-0.0.0 - First commit - 2025/03/23
-0.01    Minor updates
+0.0.0 - First commit - 2025/03/23<br>
+0.0.1   Minor updates<br>
+0.1.0   The auto connect and read function refused to call the dialog to enable Nearby Devices, so I added Buttons to do it upon user request.
 
 The Avalonia Android project provides the basic functionality to use Classic Bluetooth.
 
@@ -12,15 +13,27 @@ This program demonstrates how to do Classic Bluetooth communication, and doesn't
 I do not want to clutter the issue with my own ideas.
 A capable hobbyist should easily take it from here to a fully functional Bluetooth interface.
 
+## The working program
+![Screenshot_2025-03-28-17-23-07-900_com.CompanyName.AvaloniaTest.jpg](Screenshot_2025-03-28-17-23-07-900_com.CompanyName.AvaloniaTest.jpg)
 ### Topics
 
+#### Setting TargetFramework, Target OS and SupportedOS
+If you are using JetBrains it does not provide a dialog to set them:
+You will have to edit the relevant Android.csproj.
+Add the following inside the PropertyGroup.
+```xaml
+<PropertyGroup>
+   <OutputType>Exe</OutputType>
+   <TargetFramework>net9.0-android35.0</TargetFramework>
+   <SupportedOSPlatformVersion>30.0</SupportedOSPlatformVersion>
+```
 #### Setting up the HC-05
 
 You will also have to program your Bluetooth Module (HC-05 or other) to set it up.
 There are enough examples on the internet of how to do that.
 Your Bluetooth Module should get a name, so that you can scan for it on your phone and pair with it.
-The program has been hardcoded to connect to this Bluetooth name, which in my case was "Kar1".
-I used a NanoMega168, powered through the USB cable, and simple connections to the HC-05 to test my code.
+This program has been hardcoded to connect to this Bluetooth name, which in my case was "Kar1".
+To test my code, I used a NanoMega168, powered through the USB cable, and simple connections to the HC-05.
 
 #### Permissions
 
@@ -28,7 +41,7 @@ The first task of the interface is to ensure that the phone has the proper permi
 The developer needs to ensure that the Bluetooth adapter is enabled, and then get permission to use Bluetooth.
 Permission needs to be set both in the AndroidManifest.xml file and at runtime.
 You can initially concentrate on getting this working following my example code.
-Be aware that it seems like you will need to evaluate your code on real hardware and not in an emulator.
+Be aware that it seems like you will need to evaluate your code on real hardware and not on an emulator.
 
 #### Receiving data from the Arduino
 To simplify matters, I provide a very basic Arduino sketch that merely periodically sends data to the phone, consisting of a message and a counter.

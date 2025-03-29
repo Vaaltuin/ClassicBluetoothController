@@ -22,8 +22,12 @@
         <ScrollViewer Grid.Row="2">
             <ItemsControl ItemsSource="{Binding BluetoothMessages}"></ItemsControl>
         </ScrollViewer>
-        <Button Grid.Row="3" Command="{Binding ClearListCommand}">Clear list</Button>
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10,10">
+            <Button Command="{Binding ClearListCommand}">Clear list</Button>
+            <Button Command="{Binding ConnectCommand}">Connect</Button>
+            <Button Command="{Binding ReceiveCommand}">Start Receiving</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4">
             <TextBlock VerticalAlignment="Center">Seed for reply messages:</TextBlock>
             <TextBox Text="{Binding SendMessage}"></TextBox>
             <Button Command="{Binding SendButtonCommand}">Send</Button>
