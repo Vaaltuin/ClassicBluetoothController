@@ -14,7 +14,8 @@ I do not want to clutter the issue with my own ideas.
 A capable hobbyist should easily take it from here to a fully functional Bluetooth interface.
 
 ## The working program
-![Screenshot_2025-03-28-17-23-07-900_com.CompanyName.AvaloniaTest.jpg](Screenshot_2025-03-28-17-23-07-900_com.CompanyName.AvaloniaTest.jpg)
+![Screenshot_2025-03-28-17-23-07-900_com CompanyName AvaloniaTest](https://github.com/user-attachments/assets/08a71ad9-ab23-490a-b44b-918fc517486c)
+
 ### Topics
 
 #### Setting TargetFramework, Target OS and SupportedOS
